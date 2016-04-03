@@ -4,16 +4,16 @@ files = [
 	.gitignore gvim.rc
 ]
 
-mkproject = touch files
+mkproject = [ touch files ]
 
  .gitignore = [
-	*~ *.swp
+	'*~' '*.swp'
 	exe.exe log.log
 	ypp.tab.?pp
 	lex.yy.c
 ]
 
-gvim.rc = [ '#!/bin/sh' gvim -p files ]
+gvim.rc = [ '#!/bin/sh' 'gvim -p '+files/' ' ]
 
 Makefile = 
 '

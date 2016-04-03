@@ -9,7 +9,18 @@
 using namespace std;
 
 struct Sym {
+	string tag,val;
+	Sym(string,string); Sym(string);
+	virtual string tagval(); string tagstr();
+	virtual string dump(int=0); string pad(int);
+	vector<Sym*> nest; void push(Sym*);
 };
+
+struct Str: Sym { Str(string); string dump(int); };
+
+struct List: Sym { List(); string tagval(); };
+
+struct Op: Sym { Op(string); };
 
 extern int yylex();
 extern int yylineno;
