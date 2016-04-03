@@ -1,0 +1,15 @@
+files = [
+	src.src log.log 
+	core = [ ypp.ypp lpp.lpp hpp.hpp cpp.cpp Makefile ]
+	.gitignore gvim.rc
+]
+
+touch files
+
+ .gitignore = [
+	*~ *.swp
+	exe.exe log.log
+	ypp.tab.?pp
+	lex.yy.c
+]
+
