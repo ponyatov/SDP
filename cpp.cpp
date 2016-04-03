@@ -8,6 +8,7 @@ Sym::Sym(string V):Sym("",V) {}
 
 void Sym::push(Sym*o) { nest.push_back(o); }
 
+string Sym::sig() { return val; }
 string Sym::pad(int n) { string S; for (int i=0;i<n;i++) S+='\t'; return S; }
 string Sym::tagval() { return "<"+tag+":"+val+">"; }
 string Sym::tagstr() { return "'"+val+"'"; }
@@ -17,6 +18,7 @@ string Sym::dump(int depth)	{ string S = "\n"+pad(depth)+tagval();
 	return S; }
 
 Str::Str(string V):Sym(V) {}
+string Str::sig() { return "''"; }
 string Str::dump(int depth) { string S = "\n"+pad(depth)+"'";
 	char c; for (int i=0,e=val.length();i<e;i++) { c=val[i];
 		switch (c) {
@@ -27,6 +29,9 @@ string Str::dump(int depth) { string S = "\n"+pad(depth)+"'";
 	return S+"'"; }
 
 List::List():Sym("[","]") {}
+string List::sig() { return "[]"; }
 string List::tagval() { return "[]"; }
 
 Op::Op(string V):Sym("op",V) {}
+
+Rule::Rule(Sym*A,Sym*B):Sym("rule",A->sig()+"+"+B->sig()) { push(A); push(B); }

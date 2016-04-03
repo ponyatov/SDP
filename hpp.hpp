@@ -14,13 +14,16 @@ struct Sym {
 	virtual string tagval(); string tagstr();
 	virtual string dump(int=0); string pad(int);
 	vector<Sym*> nest; void push(Sym*);
+	virtual string sig(); // sig()nature
 };
 
-struct Str: Sym { Str(string); string dump(int); };
+struct Str: Sym { Str(string); string dump(int); string sig(); };
 
-struct List: Sym { List(); string tagval(); };
+struct List: Sym { List(); string tagval(); string sig(); };
 
 struct Op: Sym { Op(string); };
+
+struct Rule: Sym { Rule(Sym*,Sym*); };
 
 extern int yylex();
 extern int yylineno;
