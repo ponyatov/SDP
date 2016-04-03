@@ -34,4 +34,4 @@ string List::tagval() { return "[]"; }
 
 Op::Op(string V):Sym("op",V) {}
 
-Rule::Rule(Sym*A,Sym*B):Sym("rule",A->sig()+"+"+B->sig()) { push(A); push(B); }
+Rule::Rule(Sym*A,Sym*B):Sym("rule",A->sig()+"="+B->sig()) { push(A); push(B); }
